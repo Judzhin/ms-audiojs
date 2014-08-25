@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>audio.js</title>
+        <script src="./audiojs/audio.js"></script>
+        <!--<script src="./audiojs/audio.min.js"></script>-->
+        <link rel="stylesheet" href="./includes/index.css" media="screen">
+
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+        <script>
+            audiojs.events.ready(function() {
+                var players = audiojs.createAll({
+                    play: function(p1, p2, p3) {
+
+                        var scope = this;
+
+                        audiojs.helpers.addClass(scope.element.parentNode, 'playing');
+
+                        $.each(players, function(index, value) {
+
+                            var player = this;
+
+                            console.log([scope, player]);
+
+                            if (scope.mp3 !== player.mp3) {
+                                player.pause();
+                            }
+                        });
+
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+
+        <header>
+            <h1>audio.js</h1>
+        </header>
+
+        <audio src="audio/tr01.mp3" preload="auto"></audio>
+        <audio src="audio/tr02.mp3" preload="auto"></audio>
+        <audio src="audio/tr03.mp3" preload="auto"></audio>
+        <audio src="audio/tr04.mp3" preload="auto"></audio>
+
+    </body>
+</html>
